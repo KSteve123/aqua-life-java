@@ -17,4 +17,13 @@ public interface ParamService {
     param getParamById(String name);
     
     
+    public param SaveParam(param Param);
+    
+    public List<param> getAllParams();
+    
+    param updateParam(param Param, String name);
+
+    void deleteParam(String name);
+    
+    
 }

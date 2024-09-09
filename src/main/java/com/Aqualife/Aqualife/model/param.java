@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 @Table(name="tbl_param")
 public class param {
     
+    
     @Column(name = "id")
     private int id;
     @Id
