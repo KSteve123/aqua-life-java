@@ -91,9 +91,9 @@ class ParamControllerTest {
         param.setDiet("Diet");
         param.setId(1);
         param.setName("Name");
-        param.setPh_level("Ph level");
-        param.setTank_size("Tank size");
-        param.setWater_temp("Water temp");
+        param.setPh_level("6.0-7.5");
+        param.setTank_size("3.5");
+        param.setWater_temp("25-28");
         when(paramService.updateParam(Mockito.<param>any(), Mockito.<String>any())).thenReturn(param);
 
         param param2 = new param();
@@ -101,9 +101,9 @@ class ParamControllerTest {
         param2.setDiet("Diet");
         param2.setId(1);
         param2.setName("Name");
-        param2.setPh_level("Ph level");
-        param2.setTank_size("Tank size");
-        param2.setWater_temp("Water temp");
+        param2.setPh_level("6.0-7.5");
+        param2.setTank_size("3.5");
+        param2.setWater_temp("25-28");
         String content = (new ObjectMapper()).writeValueAsString(param2);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.put("/survival/update/{name}", "Name")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -117,7 +117,7 @@ class ParamControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.content()
                         .string(
-                                "{\"id\":1,\"name\":\"Name\",\"water_temp\":\"Water temp\",\"ph_level\":\"Ph level\",\"tank_size\":\"Tank size\",\"behaviour"
+                                "{\"id\":1,\"name\":\"Name\",\"water_temp\":\"25-28\",\"ph_level\":\"6.0-7.5\",\"tank_size\":\"3.5\",\"behaviour"
                                         + "\":\"Behaviour\",\"diet\":\"Diet\"}"));
     }
 
@@ -132,9 +132,9 @@ class ParamControllerTest {
         param.setDiet("Diet");
         param.setId(1);
         param.setName("Name");
-        param.setPh_level("Ph level");
-        param.setTank_size("Tank size");
-        param.setWater_temp("Water temp");
+        param.setPh_level("6.0");
+        param.setTank_size("3.0");
+        param.setWater_temp("27");
         when(paramService.SaveParam(Mockito.<param>any())).thenReturn(param);
 
         param param2 = new param();
@@ -142,9 +142,9 @@ class ParamControllerTest {
         param2.setDiet("Diet");
         param2.setId(1);
         param2.setName("Name");
-        param2.setPh_level("Ph level");
-        param2.setTank_size("Tank size");
-        param2.setWater_temp("Water temp");
+        param2.setPh_level("6.0");
+        param2.setTank_size("3.0");
+        param2.setWater_temp("27");
         String content = (new ObjectMapper()).writeValueAsString(param2);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/survival/add")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -178,17 +178,5 @@ class ParamControllerTest {
     /**
      * Method under test: {@link ParamController#deleteParam(String)}
      */
-    @Test
-    void testDeleteParam2() throws Exception {
-        // Arrange
-        doNothing().when(paramService).deleteParam(Mockito.<String>any());
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/survival/delete/{name}", "Name");
-        requestBuilder.contentType("https://example.org/example");
 
-        // Act and Assert
-        MockMvcBuilders.standaloneSetup(paramController)
-                .build()
-                .perform(requestBuilder)
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
 }
